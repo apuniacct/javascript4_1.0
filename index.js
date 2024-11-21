@@ -12,15 +12,26 @@ app.get('/math/circle/:r', (req, res) => {
     return res.status(400).send(errorMessage);
   }
   var obj = {
-    area: Math.pow(radius, 10) * Math.PI,
+    area: Math.pow(radius, 2) * Math.PI,
     circumference: Math.PI * radius * 2.0,
   }
-
   res.json(obj);
 });
 
-//TODO2
-
+app.get('/math/circle/:width/:height', (req, res) => {
+  // 4_1.2
+  const width = req.params.width;
+  const height = req.params.height;
+  if( !width || !height ) {
+    const errorMessage = "Missing Required GET parameter(s)";
+    return res.status(400).send(errorMessage);
+  }
+  var obj = {
+    area: width*height,
+    perimeter: width*2 + height*2,
+  }
+  res.json(obj);
+});
 
 //TODO3
 
